@@ -18,10 +18,7 @@ class ColaCircular(Generic[T]):
         self.__datos[self.final] = dato
         self.cantidad += 1
         
-        if self.final == self.capacidad-1:
-            self.final = 0
-        else:
-            self.final = self.final + 1
+        self.final = (self.final + 1) % self.capacidad
             
     def desencolar(self) -> T | None:
         if self.cantidad == 0:
@@ -31,10 +28,7 @@ class ColaCircular(Generic[T]):
         self.__datos[self.frente] = None
         self.cantidad -= 1
         
-        if self.frente == self.capacidad - 1:
-            self.frente = 0
-        else:
-            self.frente = self.frente + 1
+        self.frente = (self.frente + 1) % self.capacidad
             
         return dato_recuperado
     
