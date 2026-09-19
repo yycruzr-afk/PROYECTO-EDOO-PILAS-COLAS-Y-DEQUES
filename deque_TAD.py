@@ -1,15 +1,10 @@
-from typing import TypeVar, Generic, Optional
-
-T = TypeVar('T')
+from typing import Generic, Optional, TypeVar
+from nodos import NodoDeque
+T = TypeVar("T")
 
 class UnderflowError(Exception):
     pass
 
-class NodoDeque(Generic[T]):
-    def __init__(self, dato: T):
-        self.dato: T = dato
-        self.anterior: Optional["NodoDeque[T]"] = None
-        self.siguiente: Optional["NodoDeque[T]"] = None
 
 class Deque(Generic[T]):
     def __init__(self):
