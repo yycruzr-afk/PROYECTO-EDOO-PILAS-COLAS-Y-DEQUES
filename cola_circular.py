@@ -51,4 +51,4 @@ class ColaCircular(Generic[T]):
             return False
         
     def tamanio(self) -> int:
-        return self.capacidad
+        return self.cantidad
