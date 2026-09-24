@@ -1,6 +1,5 @@
 from pila import Pila
 
-
 def prueba_pila_vacia():
     print("\n========== P01: PILA VACÍA ==========")
 
@@ -8,7 +7,7 @@ def prueba_pila_vacia():
 
     print("Estado antes:")
     print("Cima: None")
-    print("Tamaño:", pila.tamanio())
+    print("Tamaño:", pila.obtener_tamanio())
 
     resultado = pila.esta_vacia()
 
@@ -29,7 +28,7 @@ def prueba_un_elemento():
 
     print("Estado antes:")
     print("Cima: None")
-    print("Tamaño:", pila.tamanio())
+    print("Tamaño:", pila.obtener_tamanio())
 
     pila.apilar(10)
 
@@ -38,8 +37,8 @@ def prueba_un_elemento():
     esperado_cima = 10
     esperado_tamanio = 1
 
-    obtenido_cima = pila.cima()
-    obtenido_tamanio = pila.tamanio()
+    obtenido_cima = pila.consultar_cima()
+    obtenido_tamanio = pila.obtener_tamanio()
 
     print("Estado después:")
     print("Cima:", obtenido_cima)
@@ -67,7 +66,7 @@ def prueba_varios_elementos():
 
     print("Estado antes:")
     print("Cima: None")
-    print("Tamaño:", pila.tamanio())
+    print("Tamaño:", pila.obtener_tamanio())
 
     pila.apilar(10)
     pila.apilar(20)
@@ -78,8 +77,8 @@ def prueba_varios_elementos():
     esperado_cima = 30
     esperado_tamanio = 3
 
-    obtenido_cima = pila.cima()
-    obtenido_tamanio = pila.tamanio()
+    obtenido_cima = pila.consultar_cima()
+    obtenido_tamanio = pila.obtener_tamanio()
 
     print("Estado después:")
     print("Cima:", obtenido_cima)
@@ -110,8 +109,8 @@ def prueba_vaciado():
     pila.apilar(30)
 
     print("Estado antes:")
-    print("Cima:", pila.cima())
-    print("Tamaño:", pila.tamanio())
+    print("Cima:", pila.consultar_cima())
+    print("Tamaño:", pila.obtener_tamanio())
 
     primero = pila.desapilar()
     segundo = pila.desapilar()
@@ -127,7 +126,7 @@ def prueba_vaciado():
 
     print("\nEstado después:")
     print("Cima: None")
-    print("Tamaño:", pila.tamanio())
+    print("Tamaño:", pila.obtener_tamanio())
     print("¿Está vacía?:", pila.esta_vacia())
 
     esperado = [30, 20, 10]
@@ -144,7 +143,7 @@ def prueba_vaciado():
 
     if (obtenido == esperado and
             pila.esta_vacia() and
-            pila.tamanio() == 0):
+            pila.obtener_tamanio() == 0):
         print("Estado: APROBADO")
     else:
         print("Estado: NO APROBADO")
@@ -157,7 +156,7 @@ def prueba_underflow():
 
     print("Estado antes:")
     print("Cima: None")
-    print("Tamaño:", pila.tamanio())
+    print("Tamaño:", pila.obtener_tamanio())
 
     print("\nOperación: desapilar() sobre una pila vacía")
 
@@ -169,7 +168,6 @@ def prueba_underflow():
         print("Estado: NO APROBADO")
 
     except Exception as e:
-
         print("Esperado: excepción por intentar desapilar una pila vacía")
         print("Obtenido:", e)
         print("Estado: APROBADO")
@@ -181,13 +179,8 @@ def ejecutar_pruebas():
     print("========================================")
 
     prueba_pila_vacia()
-
     prueba_un_elemento()
-
     prueba_varios_elementos()
-
     prueba_vaciado()
-
     prueba_underflow()
-
 
