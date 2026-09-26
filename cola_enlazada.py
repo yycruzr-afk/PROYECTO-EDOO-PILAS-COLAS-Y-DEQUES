@@ -1,22 +1,17 @@
 from typing import Generic, TypeVar, Optional
+from nodos import NodoPila
 
 T = TypeVar("T")
 
 
-class NodoCola(Generic[T]):
-    def __init__(self, dato: T):
-        self.dato = dato
-        self.siguiente: Optional["NodoCola[T]"] = None
-
-
 class Cola(Generic[T]):
     def __init__(self):
-        self.frente: Optional[NodoCola[T]] = None
-        self.final: Optional[NodoCola[T]] = None
+        self.frente: Optional[NodoPila[T]] = None
+        self.final: Optional[NodoPila[T]] = None
         self._tamanio = 0
 
     def encolar(self, dato: T) -> None:
-        nuevo = NodoCola(dato)
+        nuevo = NodoPila(dato)
 
         if self.esta_vacia():
             self.frente = nuevo
