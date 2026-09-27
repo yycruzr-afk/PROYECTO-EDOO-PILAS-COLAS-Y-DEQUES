@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar
+from typing import Generic, TypeVar, Optional
 from nodos import NodoPila
 
 T = TypeVar("T")
@@ -9,6 +9,10 @@ class Pila(Generic[T]):
     def __init__(self):
         self.__cima = None
         self.__tamanio = 0
+
+    @property
+    def cima(self) -> Optional[NodoPila[T]]:
+        return self.__cima
 
     def apilar(self, dato: T) -> None:
         nuevo = NodoPila(dato)

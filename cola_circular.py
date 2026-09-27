@@ -52,3 +52,12 @@ class ColaCircular(Generic[T]):
         
     def tamanio(self) -> int:
         return self.cantidad
+
+    def mostrar(self) -> None:
+        for indice, valor in enumerate(self.__datos):
+            marcas = ""
+            if indice == self.frente:
+                marcas += " <- frente"
+            if indice == self.final:
+                marcas += " <- final"
+            print(f"    [{indice}] {valor}{marcas}")

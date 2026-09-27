@@ -22,6 +22,26 @@ class MesaDeAyuda:
     def atender_solicitud(self) -> Solicitud:
         return self.cola.desencolar()
 
+    def ver_estructura(self) -> None:
+        print("  Cola enlazada (frente -> final):")
+        actual = self.cola.frente
+        while actual is not None:
+            print(f"    Nodo {id(actual)} -> {actual.dato.codigo}")
+            actual = actual.siguiente
+        print("    None")
+
+    def cargar_datos_de_prueba(self) -> None:
+        datos = [
+            ("S01", "Cristopher", "Problema con acceso al sistema", "08:00"),
+            ("S02", "Ana", "No puede ingresar a su correo", "08:05"),
+            ("S03", "Luis", "Problema con la plataforma virtual", "08:10"),
+            ("S04", "Maria", "Problema con contrasena", "08:20"),
+        ]
+        for codigo, nombre, descripcion, hora in datos:
+            self.registrar_solicitud(
+                Solicitud(codigo, nombre, descripcion, hora)
+            )
+
     def mostrar_cola(self) -> None:
         solicitudes = self.cola.mostrar()
 
@@ -44,6 +64,72 @@ class MesaDeAyuda:
         print(f"Frente: {frente}")
         print(f"Final: {final}")
         print(f"Tamaño: {self.cola.tamanio()}")
+
+
+MENU = """
+--- COLA: MESA DE AYUDA ---
+1. Registrar solicitud
+2. Atender solicitud
+3. Consultar proxima
+4. Ver estado
+5. Ver estructura completa
+6. Cargar datos de prueba
+0. Volver
+"""
+
+
+def menu_mesa_ayuda():
+    mesa = MesaDeAyuda()
+    while True:
+        print(MENU)
+        opcion = input("Opcion: ").strip()
+
+        if opcion == "0":
+            print("Volviendo al menu principal...")
+            break
+
+        if opcion == "1":
+            codigo = input("Codigo: ").strip()
+            nombre = input("Nombre: ").strip()
+            descripcion = input("Descripcion: ").strip()
+            hora = input("Hora de llegada: ").strip()
+            try:
+                mesa.registrar_solicitud(
+                    Solicitud(codigo, nombre, descripcion, hora)
+                )
+                print(f"Registrada: {codigo}")
+            except ValueError as e:
+                print(f"Error: {e}")
+            mesa.mostrar_estado()
+
+        elif opcion == "2":
+            try:
+                print(f"Atendida: {mesa.atender_solicitud()}")
+            except IndexError as e:
+                print(f"Error: {e}")
+            mesa.mostrar_estado()
+
+        elif opcion == "3":
+            try:
+                print(f"Proxima: {mesa.consultar_proxima()}")
+            except IndexError as e:
+                print(f"Error: {e}")
+
+        elif opcion == "4":
+            mesa.mostrar_estado()
+
+        elif opcion == "5":
+            mesa.ver_estructura()
+
+        elif opcion == "6":
+            mesa.cargar_datos_de_prueba()
+            print("Datos de prueba cargados.")
+            mesa.mostrar_estado()
+
+        else:
+            print("Opcion no valida.")
+
+        print()
 
 
 def prueba_mesa_ayuda():
