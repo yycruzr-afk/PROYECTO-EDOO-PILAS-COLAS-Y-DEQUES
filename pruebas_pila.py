@@ -1,4 +1,4 @@
-from pila import Pila
+from pila import Pila, PilaVaciaError
 
 def prueba_pila_vacia():
     print("\n========== P01: PILA VACÍA ==========")
@@ -167,7 +167,7 @@ def prueba_underflow():
         print("Obtenido: no se produjo ninguna excepción")
         print("Estado: NO APROBADO")
 
-    except Exception as e:
+    except PilaVaciaError as e:
         print("Esperado: excepción por intentar desapilar una pila vacía")
         print("Obtenido:", e)
         print("Estado: APROBADO")
@@ -183,4 +183,3 @@ def ejecutar_pruebas():
     prueba_varios_elementos()
     prueba_vaciado()
     prueba_underflow()
-
