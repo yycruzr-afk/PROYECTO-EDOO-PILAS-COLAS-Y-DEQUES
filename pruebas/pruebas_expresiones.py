@@ -1,7 +1,6 @@
 import sys
 import os
 
-# Permite importar los módulos ubicados en la carpeta raíz del proyecto
 sys.path.append(
     os.path.dirname(
         os.path.dirname(
