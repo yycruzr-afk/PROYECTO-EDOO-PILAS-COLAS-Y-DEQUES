@@ -1,5 +1,6 @@
 from typing import Generic, TypeVar, Optional
 T = TypeVar("T")
+
 class NodoPila(Generic[T]):
     def __init__(self, dato: T):
         self.dato: T = dato
@@ -10,3 +11,8 @@ class NodoDeque(Generic[T]):
         self.dato: T = dato
         self.anterior: Optional["NodoDeque[T]"] = None
         self.siguiente: Optional["NodoDeque[T]"] = None
+
+class NodoCola(Generic[T]):
+    def __init__(self, dato: T) -> None:
+        self.dato: T = dato
+        self.siguiente: Optional["NodoCola[T]"] = None
