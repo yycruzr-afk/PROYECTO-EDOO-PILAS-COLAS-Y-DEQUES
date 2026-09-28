@@ -10,7 +10,6 @@ class Deque(Generic[T]):
     def __init__(self):
         self.frente: Optional["NodoDeque[T]"] = None
         self.final: Optional["NodoDeque[T]"] = None
-        # Se usa _tamanio con guion bajo para evitar conflictos con el método tamanio()
         self._tamanio: int = 0
 
     def esta_vacio(self) -> bool:
